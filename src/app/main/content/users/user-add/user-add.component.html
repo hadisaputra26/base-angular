@@ -1,0 +1,62 @@
+<h1 matDialogTitle>Tambah User</h1>
+<div mat-dialog-content>
+  <form class="mat-white-bg p-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto" name="form" [formGroup]="form"
+    (submit)="onSubmit();">
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Nama" formControlName="name">
+        <mat-error *ngIf="form.controls?.name?.errors?.required">
+          Masukkan nama
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="form.controls?.username?.errors?.required">
+          Masukkan Username
+        </mat-error>
+        <mat-error *ngIf="form.controls?.username?.errors?.unique">
+          Username sudah terpakai
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Email" formControlName="email" type="email">
+        <mat-error *ngIf="form.controls?.email?.errors?.required">
+          Masukkan email
+        </mat-error>
+        <mat-error *ngIf="form.controls?.email?.errors?.unique">
+          Email sudah terpakai
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <mat-form-field fxFlex="100">
+        <input matInput placeholder="Password" formControlName="password" type="password">
+        <mat-error *ngIf="form.controls?.password?.errors?.required">
+          Masukkan password
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+      <mat-form-field fxFlex="100">
+        <input inputmode="numeric" matInput placeholder="No. Telepon" formControlName="phone">
+        <mat-error *ngIf="form.controls?.phone?.errors?.required">
+          Masukkan No. Telepon
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="pt-24" fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button class="mat-accent mr-16" (click)="onSubmit()">Simpan</button>
+  <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+  <button mat-button (click)="dialogRef.close(false)">Batal</button>
+</div>
